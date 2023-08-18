@@ -1,11 +1,11 @@
 FROM openjdk:17
 
-WORKDIR "/home"
+WORKDIR /rosa
 
-COPY . .
-
-WORKDIR "home/rosa"
+COPY target/rosa.jar /rosa
 
 EXPOSE 8080
 
-CMD [ "java", "-jar",  "/home/rosa/target/rosa-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "rosa.jar"]
+
+#ENTRYPOINT [ "java", "-jar",  " /rosa/out/artifacts/rosa_jar/rosa.jar"]
