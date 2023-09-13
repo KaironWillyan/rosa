@@ -1,19 +1,44 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+
+<head th:replace="~{layoutBase :: head}">
 </head>
+
 <body>
-    <div class="container">
-        <h1>Pagina de Teste</h1>
 
-        <div class="content">
-            <p>
-                You request <a href="/teste">here</a>
-            </p>
-        </div>
-    </div>
+<div th:replace="~{layoutBase :: navbar}"></div>
 
+<div class="container mb-2">
+    <h1>Funcionários</h1>
+    <table class="table table-light">
+        <tr class="table-dark">
+            <th></th>
+            <th scope="col">Nome</th>
+            <th scope="col">destinacao</th>
+            <th scope="col">taxaRentabilidadeAnual</th>
+            <th scope="col">prazoMinimo</th>
+            <th scope="col">taxaAdministracao</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+        </tr>
+
+        <tr th:each="func : ${products}">
+            <th scope="row"></th>
+            <td><span th:text="${func.nome}"></span></td>
+            <td><span th:text="${func.destinacao}"></span></td>
+            <td><span th:text="${func.taxaRentabilidadeAnual}"></td>
+            <td><span th:text="${func.prazoMinimo}"></span></td>
+            <td><span th:text="${func.taxaAdministracao}"></span></td>
+            <td><span th:text="${func.status}"></span></td>
+            <td class="buttons "><a th:href="@{form/{id}(id=${func.id})}"
+                                    th:method="get" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                <a th:href="@{delete/{id}(id=${func.id})}" th:method="delete"
+                   class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+        </tr>
+    </table>
+
+    <a href="product/form"><button class="btn btn-dark">Adicionar
+        product</button></a>
+</div>
 </body>
+
 </html>
